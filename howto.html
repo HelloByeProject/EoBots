@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Endless-Online VM Setup & Download Center</title>
+  <style>
+    :root {
+      --bg: #f4f4f9;
+      --card-bg: #ffffff;
+      --text: #333333;
+      --accent: #4a90e2;
+      --border-radius: 1rem;
+      --box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    header {
+      background: var(--accent);
+      color: #fff;
+      text-align: center;
+      padding: 1rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    header h1 {
+      font-size: 2rem;
+    }
+    main {
+      flex: 1;
+      padding: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .instructions {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .instructions h2 {
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .instructions ol {
+      list-style-position: inside;
+    }
+    .instructions ol li {
+      margin-bottom: 0.75rem;
+    }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      flex: 1 1 280px;
+      max-width: 320px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+    }
+    .card h2 {
+      margin-bottom: 0.5rem;
+      color: var(--accent);
+      font-size: 1.25rem;
+    }
+    .card p {
+      flex: 1;
+      margin-bottom: 1rem;
+    }
+    .btn-download {
+      text-decoration: none;
+      text-align: center;
+      padding: 0.75rem;
+      border-radius: 0.75rem;
+      background: var(--accent);
+      color: #fff;
+      font-weight: bold;
+      transition: background 0.2s;
+    }
+    .btn-download:hover {
+      background: #357ab8;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Endless-Online VM Setup & Download Center</h1>
+  </header>
+  <main>
+    <section class="instructions">
+      <h2>How to Download and Set Up Your Virtual Machine</h2>
+      <ol>
+        <li><strong>Download Windows 10 ISO:</strong> Get the official ISO from Archive.org: <a href="https://archive.org/details/windows-10-22h2-en-us" target="_blank">Windows 10 22H2 ISO</a>.</li>
+        <li><strong>Download VirtualBox:</strong> Install Oracle VirtualBox from the official site: <a href="https://www.virtualbox.org/" target="_blank">VirtualBox Downloads</a>.</li>
+        <li><strong>Create a New VM:</strong>
+          <ul>
+            <li>Open VirtualBox and click <em>New</em>.</li>
+            <li>Name it "EO-Bot-VM", choose <em>Type: Microsoft Windows</em>, <em>Version: Windows 10 (64-bit)</em>.</li>
+            <li>Allocate at least 2048 MB RAM (4096 MB if possible).</li>
+          </ul>
+        </li>
+        <li><strong>Configure Storage:</strong>
+          <ul>
+            <li>Select your VM → <em>Settings</em> → <em>Storage</em>.</li>
+            <li>Under <em>Controller: IDE</em>, click the disc icon → <em>Choose a disk file</em> and attach the Windows 10 ISO.</li>
+          </ul>
+        </li>
+        <li><strong>Install Windows 10:</strong>
+          <ul>
+            <li>Start the VM and follow on-screen prompts.</li>
+            <li>When prompted for a product key, use one of the generic install keys: <a href="https://www.tenforums.com/tutorials/95922-generic-product-keys-install-windows-10-editions.html" target="_blank">Generic Windows 10 Keys</a>.</li>
+          </ul>
+        </li>
+        <li><strong>Install Guest Additions:</strong> Once Windows boots, in the VirtualBox menu choose <em>Devices → Insert Guest Additions CD</em> to enable better performance.</li>
+        <li><strong>Snapshot Your Clean State:</strong> Go back to VirtualBox, select the VM → <em>Snapshots</em> → <em>Take</em>. Name it "Clean Install" for easy rollback.</li>
+        <li><strong>Download Bots:</strong> Scroll down to the download center below to grab your Endless-Online bots.</li>
+      </ol>
+    </section>
+    <section id="download-center">
+      <div class="container" id="bot-container"></div>
+    </section>
+  </main>
+  <script>
+    // Fetch bots.json and render download cards
+    fetch('bots.json')
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById('bot-container');
+        data.bots.forEach(bot => {
+          const card = document.createElement('div');
+          card.className = 'card';
+          card.innerHTML = `
+            <h2>${bot.name}</h2>
+            <p>${bot.description}</p>
+            <a class="btn-download" href="${bot.downloadUrl}" target="_blank">Download</a>
+          `;
+          container.appendChild(card);
+        });
+      })
+      .catch(err => console.error('Failed to load bots.json', err));
+  </script>
+  <!--
+    Example bots.json (place in same directory):
+    {
+      "bots": [
+        {
+          "name": "FastEO Bot",
+          "description": "Automated farming and pathing bot for Endless-Online.",
+          "downloadUrl": "https://example.com/fast-eo-bot.zip"
+        },
+        {
+          "name": "SafeEO Bot",
+          "description": "Stealthy bot with randomization to avoid detection.",
+          "downloadUrl": "https://example.com/safe-eo-bot.zip"
+        }
+      ]
+    }
+  -->
+</body>
+</html>
