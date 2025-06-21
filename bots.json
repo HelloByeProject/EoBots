@@ -2,13 +2,18 @@
   "bots": [
     {
       "name": "CeraBot Range",
-      "description": "Client 0442 - Kiting Range Bot By Cera ",
+      "description": "Client 0442 - By Cera ",
       "downloadUrl": "https://cdn.discordapp.com/attachments/1294519784691732542/1371229079650570372/cerabot_range_v4.exe?ex=6857c4d8&is=68567358&hm=ad9aafac4d23b7268a54a39a1c74d889173f96b46958d94e0c671f4f723619ad&"
     },
+        {
+      "name": "EOResource",
+      "description": "A desktop tool to search info about EO",
+      "downloadUrl": "https://github.com/HelloByeLetsNot/EOResource/releases/tag/Endless-Online"
+    },
     {
-      "name": "Luls Squad Bot",
-      "description": "Client 0442 - Kiting Bot With Pick Up",
-      "downloadUrl": "https://example.com/downloads/cerabot_mage.exe"
+      "name": "Speed Cast",
+      "description": "Client 0442 - By Jetfox",
+      "downloadUrl": "https://cdn.discordapp.com/attachments/1376251544432935044/1379978574274105364/memory_scanner.exe?ex=6857f572&is=6856a3f2&hm=eef9bc449859e66e18f53f998ae6504b0e38227aebd694a7e99f25da7f082e4a&"
     }
   ]
 }
