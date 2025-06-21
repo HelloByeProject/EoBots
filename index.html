@@ -34,6 +34,11 @@
     header h1 {
       font-size: 1.75rem;
     }
+    /* New wrapper for grouping the two buttons */
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+    }
     .btn-howto {
       text-decoration: none;
       padding: var(--btn-padding);
@@ -93,8 +98,10 @@
 <body>
   <header>
     <h1>EOBots Download Center</h1>
-    <a href="eo-vm-setup-guide.html" class="btn-howto">How To Set Up VM</a>
-    <a href="https://discord.gg/YeER5ZnQ65" class="btn-howto">Discord</a>
+    <div class="btn-group">
+      <a href="eo-vm-setup-guide.html" class="btn-howto">How To Set Up VM</a>
+      <a href="https://discord.gg/YeER5ZnQ65" class="btn-howto">Discord</a>
+    </div>
   </header>
   <main>
     <div id="bot-container" class="container"></div>
