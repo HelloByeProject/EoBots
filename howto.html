@@ -25,12 +25,26 @@
     header {
       background: var(--accent);
       color: #fff;
-      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       padding: 1rem;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
     header h1 {
       font-size: 2rem;
+    }
+    .btn-home {
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      background: #fff;
+      color: var(--accent);
+      font-weight: bold;
+      transition: background 0.2s;
+    }
+    .btn-home:hover {
+      background: #e6e6e6;
     }
     main {
       flex: 1;
@@ -98,6 +112,7 @@
 <body>
   <header>
     <h1>Endless-Online VM Setup & Download Center</h1>
+    <a href="index.html" class="btn-home">Home</a>
   </header>
   <main>
     <section class="instructions">
